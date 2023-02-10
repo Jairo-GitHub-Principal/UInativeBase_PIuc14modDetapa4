@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TouchableOpacity, ScrollView, StyleSheet,Image } from 'react-native';
 import {widthPercentageToDP as wp,heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { LogBox } from "react-native/Libraries/LogBox/LogBox";
-import { Box,Text,Pressable } from "native-base";
+import { Box,Text,Pressable,AspectRatio,Center,Stack,Heading,HStack,VStack } from "native-base";
 
 
 import { homeStyle } from "../estilos/estilos";
@@ -68,63 +68,90 @@ export default class ListagemCliente extends Component {
                     
                    
                     
-                    <Box style={estilos.containerLista}>
+<Box m={3} >
                           
                     
                            
-                        <Box style={{ alignItems: 'flex-start', margin: 20 }}>
+                       
                             
-                        <Box>
-                           
-                               
-                               <Image style={{width:wp(80),height:hp(40)}} source={{uri:elementoLista.imgDoAnuncio}}/>
-                               
-
-                               
-
-                               
-                           </Box>
-                           <Text fontSize ="17"  fontWeight= '800' color = 'white'>id:{key=elementoLista.id} </Text>
-                            <Text fontSize ="17"  fontWeight= '800' color = 'white' >Cliente: {this.props.nome=elementoLista.nome} </Text>
-                            <Text fontSize ="17"  fontWeight= '800' color = 'white' >CPF: {this.props.cpf = elementoLista.cpf}</Text>
-                            <Text fontSize ="17"  fontWeight= '800' color = 'white'>Data de nascimento: {this.props.dataNascimento = elementoLista.dataNascimento}</Text>
-                            <Text fontSize ="17"  fontWeight= '800' color = 'white'>Assino Contrato: {this.props.dataAssiContrato = elementoLista.dataAssiContrato}</Text>
-                            <Text fontSize ="17"  fontWeight= '800' color = 'white'>Vencimento do aluguel: {this.props.dataPagaLuguel = elementoLista.dataPagaLuguel}</Text>
-                            
+                       
 
 
+                       
 
+                       
+                        
+        
+        
+        
+        
+        
+        
+    <Box alignItems="center" w={"100%"} >
+        
+          <Box maxW="100%" rounded="lg" overflow="hidden" borderColor="black.200" borderWidth="2" 
+                _light={{ borderColor: "green.500",backgroundColor: "green.200"}} 
+                    _web={{shadow: 2,borderWidth: 0 }} 
+                       _dark={{ backgroundColor: "gray.50" }}>
+                         
+                         <Box>
+                            <AspectRatio w="100%" ratio={13 / 9}>
+                            <Image source={{uri:elementoLista.imgDoAnuncio}} alt="image" />
+                            </AspectRatio>
                         </Box>
 
-
-                        <Box style={homeStyle.containButtLista}>
+                        <Stack p="1" space={3}> 
+                             <VStack  space={4}  w="100%">
+                                <VStack space={2}  bg={"green.200"}  w="100%" p={"3"}>
+                        
+                                    <Text fontSize ="17"  fontWeight= '900' color = 'gray'>id:{key=elementoLista.id} </Text>
+                                    <Text fontSize ="17"  fontWeight= '900' color = 'gray' >Cliente: {this.props.nome=elementoLista.nome} </Text>
+                                    <Text fontSize ="17"  fontWeight= '900' color = 'gray' >CPF: {this.props.cpf = elementoLista.cpf}</Text>
+                                    <Text fontSize ="17"  fontWeight= '900' color = 'gray'>Data de nascimento: {this.props.dataNascimento = elementoLista.dataNascimento}</Text>
+                                    <Text fontSize ="17"  fontWeight= '900' color = 'gray'>Assino Contrato: {this.props.dataAssiContrato = elementoLista.dataAssiContrato}</Text>
+                                    <Text fontSize ="17"  fontWeight= '900' color = 'gray'>Vencimento do aluguel: {this.props.dataPagaLuguel = elementoLista.dataPagaLuguel}</Text>
+                                    
+                                </VStack>
+                         
+                            </VStack>
+                     </Stack>
+                     <Box style={homeStyle.containButtLista}>
                                                    
 
-                            <Pressable   onPressIn={() => this.remover( this.props.id = elementoLista.id)} >
+                                                   <Pressable   onPressIn={() => this.remover( this.props.id = elementoLista.id)} >
+                                                       
+                                                   {({ isPressed }) => {
+                                                       return <Box bg={isPressed ? "blue" :"#2f4f4f"}
+                                                       style={{transform: [{ scale: isPressed ? 0.9 : 0.7 } ]
+                                                       }}
+                                                           rounded="10" overflow="hidden" borderWidth="2" borderColor="coolGray.300" width={200} maxW="96" shadow="5"  p="3" >
+                       
+                                                           <Text color="white" fontSize="25" fontWeight="900" textAlign={"center"}>
+                                                           Excluir
+                                                           </Text>
+                                                       </Box>;
+                                                   }}
+                                                   </Pressable>
+                                               </Box>
+          </Box>
+
+                                           
+  </Box>;
+    
+</Box>
                                 
-                            {({ isPressed }) => {
-                                return <Box bg={isPressed ? "blue" :"#2f4f4f"}
-                                style={{transform: [{ scale: isPressed ? 0.9 : 0.7 } ]
-                                }}
-                                    rounded="10" overflow="hidden" borderWidth="2" borderColor="coolGray.300" width={200} maxW="96" shadow="5"  p="3" >
-
-                                    <Text color="white" fontSize="25" fontWeight="900" textAlign={"center"}>
-                                    Excluir
-                                    </Text>
-                                </Box>;
-                            }}
-                            </Pressable>
-                        </Box>
-                                
 
 
 
-                    </Box>
+                    
 
 
                                       
 
                     )
+
+
+
 
                 )
                 
@@ -134,6 +161,9 @@ export default class ListagemCliente extends Component {
 
                    
                 }
+
+
+ 
 
             </ScrollView>
 
@@ -156,3 +186,5 @@ const estilos = StyleSheet.create({
 
 
 })
+
+
