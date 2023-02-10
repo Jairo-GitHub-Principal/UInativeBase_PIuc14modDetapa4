@@ -1,3 +1,7 @@
+### Segue abaixo as bibliotecas usadas na implementação desse projeto até o momento desse commit
+
+
+
 npm install react-native-screens 
 npm install react-native-safe-area-context 
 
